@@ -20,7 +20,7 @@ Some tips:
 If you use some django cache, remeber change they source for support multi-tenant(just take `connection.get_schema_name()` as part of cache key).
 
 ####How to use
-1. Change your `DATABASES` engine
+#####1.Change your `DATABASES` engine
 ```
 # project/settings.py
 DATABASES = [
@@ -32,7 +32,7 @@ DATABASES = [
 ]
 ```
 
-2. Give a middleware
+#####2.Give a middleware
 If you use a url for different tenant, `TenantMiddleware` will work good. But If you use a header or a cookie value, you should use `TenantProMiddleware`;
 ```
 # project/settings.py
@@ -41,7 +41,7 @@ MIDDLEWARE_CLASSES = [
 ]
 ```
 
-3. Set a db router for stop SHARED_APPS migrate
+#####3.Set a db router for stop SHARED_APPS migrate
 You also to need give a router
 
 ```
@@ -51,7 +51,7 @@ DATABASE_ROUTERS = {
 }
 ```
 
-4. Create your tenant, look like
+#####4.Create your tenant, look like
 ```
 class Domain(TenantMixin):
     name = models.CharField(max_length=100)
@@ -67,7 +67,7 @@ and tell `settings.py` where's that model.
 TENANT_MODEL='domain.Domain' #or some model path your define
 ```
 
-5. Give a patch
+#####5.Give a patch
 ```
 # project/wsgi.py bottom
 application = get_wsgi_application()
